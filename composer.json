@@ -1,0 +1,8 @@
+{
+  "autoload": {
+    "psr-4": {
+      "Frontend\\": "app/components/",
+      "Frontend\\Controllers\\": "app/controllers/"
+    }
+  }
+}

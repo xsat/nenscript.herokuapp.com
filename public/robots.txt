@@ -1,0 +1,3 @@
+User-agent: *
+Host: knightstournament.herokuapp.com
+Sitemap: https://knightstournament.herokuapp.com/sitemap.xml

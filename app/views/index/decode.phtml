@@ -1,0 +1,11 @@
+<form method="post">
+    <label for="content">English:</label>
+    <textarea style="width: 100%; height: 100px" id="content" name="content"><?= isset($content) ? $content : null; ?></textarea>
+    <label for="result">Nen:</label>
+    <textarea disabled style="width: 100%; height: 100px" id="result" name="result"><?= isset($result) ? $result : null; ?></textarea>
+    <button type="submit">Submit</button>
+    <br>
+    <a href="/decode.html">Restart</a>
+    <br>
+    <a href="/encode.html">Nen => English</a>
+</form>
