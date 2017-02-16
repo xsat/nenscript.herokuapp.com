@@ -26,7 +26,7 @@ class Router
     public function __construct()
     {
         if (isset($_REQUEST['_url'])) {
-            foreach ($this->routes() as $pattern => $route) {
+            foreach ($this->getRoutes() as $pattern => $route) {
                 if ($this->match($pattern, $_REQUEST['_url'])) {
                     list($this->controller, $this->action) = explode('@', $route);
                     break;
@@ -57,7 +57,7 @@ class Router
     /**
      * @return array
      */
-    public function routes()
+    public function getRoutes()
     {
         return [
             '/decode.html' => 'index@decode',
@@ -69,7 +69,7 @@ class Router
     /**
      * @return string
      */
-    public function controller()
+    public function getController()
     {
         return $this->controller;
     }
@@ -77,7 +77,7 @@ class Router
     /**
      * @return string
      */
-    public function action()
+    public function getAction()
     {
         return $this->action;
     }

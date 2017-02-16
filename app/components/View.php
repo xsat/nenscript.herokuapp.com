@@ -6,7 +6,7 @@ namespace Frontend;
  * Class View
  * @package Frontend
  */
-class View
+class View extends Container
 {
     /**
      * @var string
@@ -19,24 +19,21 @@ class View
     private $layout = 'public';
 
     /**
-     * @var Router
+     * @var ControllerInterface
      */
-    private $router;
-
-    /**
-     * @var Url
-     */
-    private $url;
+    private $controller;
 
     /**
      * View constructor.
      * @param Router $router
      * @param Url $url
+     * @param ControllerInterface $controller
      */
-    public function __construct(Router $router, Url $url)
+    public function __construct(Router $router, Url $url, ControllerInterface $controller)
     {
-        $this->router = $router;
-        $this->url = $url;
+        parent::__construct($router, $url);
+
+        $this->controller = $controller;
     }
 
     /**
@@ -44,30 +41,41 @@ class View
      */
     public function render()
     {
-        return $this->partial($this->layout);
+        return $this->getPartial($this->layout);
     }
 
     /**
      * @return string
      */
-    public function content()
+    public function getContent()
     {
-        return $this->partial($this->router->controller() . '/' . $this->router->action());
+        return $this->getPartial($this->router->getController() . '/' . $this->router->getAction());
     }
 
     /**
-     * @param $file string
+     * @param $file
+     * @param array $data
      * @return string
      * @throws Exception
      */
-    public function partial($file)
+    public function getPartial($file, $data = [])
     {
         if (!is_file(VIEW_DIR . $file . $this->ext)) {
             throw new Exception('File not found');
         }
 
         ob_start();
+
+        if (!$data) {
+            $data = $this->controller->getValues();
+        }
+
+        foreach ($data as $key => $value) {
+            ${$key} = $value;
+        }
+
         require VIEW_DIR . $file . $this->ext;
+
         return ob_get_clean();
     }
 }
