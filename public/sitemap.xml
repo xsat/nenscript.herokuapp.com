@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://nenscriprt.herokuapp.com/</loc>
+        <loc>https://nenscript.herokuapp.com/</loc>
     </url>
     <url>
-        <loc>https://nenscriprt.herokuapp.com/decode.html</loc>
+        <loc>https://nenscript.herokuapp.com/decode.html</loc>
     </url>
     <url>
-        <loc>https://nenscriprt.herokuapp.com/encode.html</loc>
+        <loc>https://nenscript.herokuapp.com/encode.html</loc>
     </url>
 </urlset>
