@@ -8,8 +8,9 @@ try {
 
     define('APP_DIR', __DIR__ . '/../app');
     define('VIEW_DIR', APP_DIR . '/views/');
+    define('CONFIG_DIR', APP_DIR . '/configs/');
 
-    echo (new \Frontend\Application())->main();
+    echo (new \App\Application())->main();
 } catch (Exception $e) {
     echo '<pre>', $e->getMessage(), "\n" , $e->getTraceAsString(), '</pre>';
 }

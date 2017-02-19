@@ -1,12 +1,14 @@
 <?php
 
-namespace Frontend;
+namespace App;
+
+use DI\Container;
 
 /**
  * Class View
- * @package Frontend
+ * @package App
  */
-class View extends Container
+class View extends Injectable
 {
     /**
      * @var string
@@ -25,13 +27,12 @@ class View extends Container
 
     /**
      * View constructor.
-     * @param Router $router
-     * @param Url $url
+     * @param Container $di
      * @param ControllerInterface $controller
      */
-    public function __construct(Router $router, Url $url, ControllerInterface $controller)
+    public function __construct(Container $di, ControllerInterface $controller)
     {
-        parent::__construct($router, $url);
+        parent::__construct($di);
 
         $this->controller = $controller;
     }
@@ -49,7 +50,10 @@ class View extends Container
      */
     public function getContent()
     {
-        return $this->getPartial($this->router->getController() . '/' . $this->router->getAction());
+        $router = $this->getDI()->get('router');
+        $route = $router->getRoute();
+
+        return $this->getPartial($route->getController() . '/' . $route->getAction());
     }
 
     /**
@@ -61,7 +65,7 @@ class View extends Container
     public function getPartial($file, $data = [])
     {
         if (!is_file(VIEW_DIR . $file . $this->ext)) {
-            throw new Exception('File not found');
+            throw new Exception('Partial does not found');
         }
 
         ob_start();

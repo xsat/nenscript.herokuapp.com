@@ -3,4 +3,10 @@
     <url>
         <loc>https://nenscriprt.herokuapp.com/</loc>
     </url>
+    <url>
+        <loc>https://nenscriprt.herokuapp.com/decode.html</loc>
+    </url>
+    <url>
+        <loc>https://nenscriprt.herokuapp.com/encode.html</loc>
+    </url>
 </urlset>

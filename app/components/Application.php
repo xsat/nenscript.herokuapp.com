@@ -1,18 +1,16 @@
 <?php
 
-namespace Frontend;
+namespace App;
+
+use DI\ContainerBuilder;
+use DI\NotFoundException;
 
 /**
  * Class Application
- * @package Frontend
+ * @package App
  */
-class Application extends Container
+class Application extends Injectable
 {
-    /**
-     * @var View
-     */
-    private $view;
-
     /**
      * @var ControllerInterface
      */
@@ -23,35 +21,56 @@ class Application extends Container
      */
     public function __construct()
     {
-        parent::__construct(new Router(), new Url());
+        parent::__construct(ContainerBuilder::buildDevContainer());
 
-        $controller = '\\Frontend\\Controllers\\' . ucfirst($this->router->getController()) . 'Controller';
+        $this->createModules();
+        $this->createController();
+
+        $this->getDI()->set('view', new View($this->getDI(), $this->controller));
+    }
+
+    private function createModules()
+    {
+        $this->getDI()->set('router', new Router());
+        $this->getDI()->set('url', new Url());
+    }
+
+    /**
+     * @throws Exception
+     * @throws NotFoundException
+     */
+    private function createController()
+    {
+        $router = $this->getDI()->get('router');
+        $route = $router->getRoute();
+
+        $controller = '\\App\\Controllers\\' . ucfirst($route->getController()) . 'Controller';
 
         if (!class_exists($controller)) {
-            throw new Exception('Controller des\'n exist');
+            throw new Exception('Controller does not exist');
         }
 
-        $action = $this->router->getAction() . 'Action';
+        $action = $route->getAction() . 'Action';
 
         if (!method_exists($controller, $action)) {
-            throw new Exception('Method des\'n exist');
+            throw new Exception('Method does not exist');
         }
 
-        $this->controller = new $controller($this->router, $this->url);
+        $this->controller = new $controller($this->getDI());
         $this->controller->{$action}();
-        $this->view = new View($this->router, $this->url, $this->controller);
     }
 
     /**
      * @return string
+     * @throws NotFoundException
      */
     public function main()
     {
-        return $this->compress($this->view->render());
+        return $this->compress($this->getDI()->get('view')->render());
     }
 
     /**
-     * @param $content
+     * @param string $content
      * @return string
      */
     public function compress($content)

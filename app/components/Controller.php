@@ -1,12 +1,12 @@
 <?php
 
-namespace Frontend;
+namespace App;
 
 /**
  * Class Controller
- * @package Frontend
+ * @package App
  */
-class Controller extends Container implements ControllerInterface
+class Controller extends Injectable implements ControllerInterface
 {
     /**
      * @var array

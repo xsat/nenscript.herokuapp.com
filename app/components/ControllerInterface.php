@@ -1,10 +1,10 @@
 <?php
 
-namespace Frontend;
+namespace App;
 
 /**
  * Interface ControllerInterface
- * @package Frontend
+ * @package App
  */
 interface ControllerInterface
 {

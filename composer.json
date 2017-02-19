@@ -1,8 +1,12 @@
 {
+  "require": {
+    "php-di/php-di": "*"
+  },
   "autoload": {
     "psr-4": {
-      "Frontend\\": "app/components/",
-      "Frontend\\Controllers\\": "app/controllers/"
+      "App\\": "app/components/",
+      "App\\Controllers\\": "app/controllers/",
+      "App\\Libraries\\": "app/libraries/"
     }
   }
 }

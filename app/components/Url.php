@@ -1,10 +1,10 @@
 <?php
 
-namespace Frontend;
+namespace App;
 
 /**
  * Class Url
- * @package Frontend
+ * @package App
  */
 class Url
 {

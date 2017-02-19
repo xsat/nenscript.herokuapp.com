@@ -1,10 +1,10 @@
 <?php
 
-namespace Frontend;
+namespace App;
 
 /**
  * Class Exception
- * @package Frontend
+ * @package App
  */
 class Exception extends \Exception
 {

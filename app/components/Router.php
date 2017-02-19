@@ -1,41 +1,77 @@
 <?php
 
-namespace Frontend;
+namespace App;
 
 /**
  * Class Router
- * @package Frontend
+ * @package App
  */
 class Router
 {
     /**
-     * @var string
+     * @var Route
      */
-    private $controller = 'index';
+    private $default;
 
     /**
-     * @var string
+     * @var Route
      */
-    private $action = 'index';
+    private $error;
 
     /**
-     * @var array
+     * @var Route
      */
-    private $params = [];
+    private $route;
 
+    /**
+     * Router constructor.
+     */
     public function __construct()
     {
+        $this->default = new Route('index', 'index');
+        $this->error = new Route('index', 'notFound');
+        $this->setRoute();
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function setRoute()
+    {
         if (isset($_REQUEST['_url'])) {
+            $this->route = $this->error;
+
             foreach ($this->getRoutes() as $pattern => $route) {
                 if ($this->match($pattern, $_REQUEST['_url'])) {
-                    list($this->controller, $this->action) = explode('@', $route);
+                    list($controller, $action) = explode('@', $route);
+                    $this->route = new Route($controller, $action);
                     break;
                 }
             }
+        } else {
+            $this->route = $this->default;
         }
     }
 
-    public function match($pattern, $subject)
+    /**
+     * @return mixed
+     * @throws Exception
+     */
+    private function getRoutes()
+    {
+        if (!is_file(CONFIG_DIR . '/routes.php')) {
+            throw new Exception('Routes not found');
+        }
+
+        return require CONFIG_DIR . '/routes.php';
+    }
+
+    /**
+     * @param string $pattern
+     * @param string $subject
+     * @return bool
+     */
+    private function match($pattern, $subject)
     {
         if ($pattern == $subject) {
             return true;
@@ -49,36 +85,16 @@ class Router
             unset($matches[0]);
         }
 
-        $this->params = $matches;
+        $this->route->setParams($matches);
 
         return true;
     }
 
     /**
-     * @return array
+     * @return Route
      */
-    public function getRoutes()
+    public function getRoute()
     {
-        return [
-            '/decode.html' => 'index@decode',
-            '/encode.html' => 'index@encode',
-            '/([0-9]+).html' => 'index@test',
-        ];
-    }
-
-    /**
-     * @return string
-     */
-    public function getController()
-    {
-        return $this->controller;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAction()
-    {
-        return $this->action;
+        return $this->route;
     }
 }
