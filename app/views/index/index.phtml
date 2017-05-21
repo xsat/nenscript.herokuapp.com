@@ -1,2 +1,12 @@
-<a href="/decode.html">Decode</a><br>
-<a href="/encode.html">Encode</a>
+<table class="table table-bordered">
+    <?php foreach ($map as $english => $nen): ?>
+        <tr>
+            <td>
+              <?= $english ?>
+            </td>
+            <td>
+                <?= $nen ?>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>

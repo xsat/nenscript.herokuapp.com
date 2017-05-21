@@ -13,11 +13,22 @@ class IndexController extends Controller
     public function indexAction()
     {
         $this->setValue('title', 'Nen');
+        $this->setValue('menu', 'home');
+
+        $map = [];
+
+        foreach (range(32, 126) as $code) {
+            $letter = chr($code);
+            $map[$letter] = Nen::decode($letter);
+        }
+
+        $this->setValue('map', $map);
     }
 
     public function decodeAction()
     {
         $this->setValue('title', 'Decode');
+        $this->setValue('menu', 'decode');
 
         if (isset($_POST['content'])) {
             $content = $_POST['content'];
@@ -29,6 +40,7 @@ class IndexController extends Controller
     public function encodeAction()
     {
         $this->setValue('title', 'Encode');
+        $this->setValue('menu', 'encode');
 
         if (isset($_POST['content'])) {
             $content = $_POST['content'];
