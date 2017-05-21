@@ -30,8 +30,8 @@ class IndexController extends Controller
         $this->setValue('title', 'Decode');
         $this->setValue('menu', 'decode');
 
-        if (isset($_POST['content'])) {
-            $content = $_POST['content'];
+        if (isset($_REQUEST['content'])) {
+            $content = $_REQUEST['content'];
             $this->setValue('content', $content);
             $this->setValue('result', Nen::decode($content));
         }
@@ -42,8 +42,8 @@ class IndexController extends Controller
         $this->setValue('title', 'Encode');
         $this->setValue('menu', 'encode');
 
-        if (isset($_POST['content'])) {
-            $content = $_POST['content'];
+        if (isset($_REQUEST['content'])) {
+            $content = $_REQUEST['content'];
             $this->setValue('content', $content);
             $this->setValue('result', Nen::encode($content));
         }

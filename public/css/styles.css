@@ -9,8 +9,7 @@ h1 {
 }
 
 body {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 15px;
 }
 
 .header {
@@ -46,6 +45,14 @@ a:focus {
 
 .nav {
     float: right;
+}
+
+.form-control[disabled] {
+    cursor: text;
+}
+
+textarea.form-control {
+    resize: vertical;
 }
 
 @media (min-width: 768px) {
