@@ -49,6 +49,7 @@ class View extends Injectable
      */
     public function getContent(): string
     {
+        /** @var Router $router */
         $router = $this->getDI()->get('router');
         $route = $router->getRoute();
 
@@ -56,12 +57,14 @@ class View extends Injectable
     }
 
     /**
-     * @param $file
+     * @param string $file
      * @param array $data
+     *
      * @return string
+     *
      * @throws Exception
      */
-    public function getPartial($file, $data = []): string
+    public function getPartial(string $file, array $data = []): string
     {
         if (!is_file(VIEW_DIR . $file . $this->ext)) {
             throw new Exception('Partial does not found');
