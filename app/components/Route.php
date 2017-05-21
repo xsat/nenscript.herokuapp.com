@@ -4,7 +4,6 @@ namespace App;
 
 /**
  * Class Route
- * @package App
  */
 class Route
 {
@@ -29,7 +28,7 @@ class Route
      * @param string $action
      * @param array $params
      */
-    public function __construct($controller, $action, $params = [])
+    public function __construct(string $controller, string $action, array $params = [])
     {
         $this->controller = $controller;
         $this->action = $action;
@@ -39,7 +38,7 @@ class Route
     /**
      * @return string
      */
-    public function getController()
+    public function getController(): string
     {
         return $this->controller;
     }
@@ -47,7 +46,7 @@ class Route
     /**
      * @param string $controller
      */
-    public function setController($controller)
+    public function setController(string $controller)
     {
         $this->controller = $controller;
     }
@@ -55,7 +54,7 @@ class Route
     /**
      * @return string
      */
-    public function getAction()
+    public function getAction(): string
     {
         return $this->action;
     }
@@ -63,7 +62,7 @@ class Route
     /**
      * @param string $action
      */
-    public function setAction($action)
+    public function setAction(string $action)
     {
         $this->action = $action;
     }
@@ -71,7 +70,7 @@ class Route
     /**
      * @return array
      */
-    public function getParams()
+    public function getParams(): array
     {
         return $this->params;
     }

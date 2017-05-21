@@ -7,7 +7,6 @@ use App\Libraries\Nen\Nen;
 
 /**
  * Class IndexController
- * @package App\Controllers
  */
 class IndexController extends Controller
 {

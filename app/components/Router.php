@@ -4,7 +4,6 @@ namespace App;
 
 /**
  * Class Router
- * @package App
  */
 class Router
 {
@@ -54,10 +53,11 @@ class Router
     }
 
     /**
-     * @return mixed
+     * @return array
+     *
      * @throws Exception
      */
-    private function getRoutes()
+    private function getRoutes(): array
     {
         if (!is_file(CONFIG_DIR . '/routes.php')) {
             throw new Exception('Routes not found');
@@ -71,7 +71,7 @@ class Router
      * @param string $subject
      * @return bool
      */
-    private function match($pattern, $subject)
+    private function match($pattern, $subject): bool
     {
         if ($pattern == $subject) {
             return true;
@@ -93,7 +93,7 @@ class Router
     /**
      * @return Route
      */
-    public function getRoute()
+    public function getRoute(): Route
     {
         return $this->route;
     }

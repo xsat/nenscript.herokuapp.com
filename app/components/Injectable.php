@@ -6,7 +6,6 @@ use DI\Container;
 
 /**
  * Class Injectable
- * @package App
  */
 class Injectable
 {
@@ -35,7 +34,7 @@ class Injectable
     /**
      * @return Container
      */
-    public function getDI()
+    public function getDI(): Container
     {
         return $this->di;
     }

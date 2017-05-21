@@ -10,9 +10,10 @@ class Nen
 {
     /**
      * @param string $content
+     *
      * @return string
      */
-    public static function encode($content)
+    public static function encode(string $content): string
     {
         $result  = $content;
 
@@ -34,9 +35,10 @@ class Nen
 
     /**
      * @param string $content
+     *
      * @return string
      */
-    public static function decode($content)
+    public static function decode(string $content): string
     {
         $from = $to = [];
 

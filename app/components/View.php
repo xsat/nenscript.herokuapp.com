@@ -6,7 +6,6 @@ use DI\Container;
 
 /**
  * Class View
- * @package App
  */
 class View extends Injectable
 {
@@ -40,7 +39,7 @@ class View extends Injectable
     /**
      * @return string
      */
-    public function render()
+    public function render(): string
     {
         return $this->getPartial($this->layout);
     }
@@ -48,7 +47,7 @@ class View extends Injectable
     /**
      * @return string
      */
-    public function getContent()
+    public function getContent(): string
     {
         $router = $this->getDI()->get('router');
         $route = $router->getRoute();
@@ -62,7 +61,7 @@ class View extends Injectable
      * @return string
      * @throws Exception
      */
-    public function getPartial($file, $data = [])
+    public function getPartial($file, $data = []): string
     {
         if (!is_file(VIEW_DIR . $file . $this->ext)) {
             throw new Exception('Partial does not found');

@@ -4,7 +4,6 @@ namespace App;
 
 /**
  * Class Controller
- * @package App
  */
 class Controller extends Injectable implements ControllerInterface
 {
@@ -17,7 +16,7 @@ class Controller extends Injectable implements ControllerInterface
      * @param string $key
      * @param mixed $data
      */
-    public function setValue($key, $data)
+    public function setValue(string $key, $data)
     {
         $this->values[$key] = $data;
     }
@@ -34,7 +33,7 @@ class Controller extends Injectable implements ControllerInterface
      * @param string $key
      * @return null|mixed
      */
-    public function getValue($key)
+    public function getValue(string $key)
     {
         if (isset($this->values[$key])) {
             return $this->values[$key];
@@ -46,7 +45,7 @@ class Controller extends Injectable implements ControllerInterface
     /**
      * @return array
      */
-    public function getValues()
+    public function getValues(): array
     {
         return $this->values;
     }
@@ -55,7 +54,7 @@ class Controller extends Injectable implements ControllerInterface
      * @param string $key
      * @param mixed $data
      */
-    public function __set($key, $data)
+    public function __set(string $key, $data)
     {
         $this->setValue($key, $data);
     }
@@ -64,7 +63,7 @@ class Controller extends Injectable implements ControllerInterface
      * @param string $key
      * @return null|mixed
      */
-    public function __get($key)
+    public function __get(string $key)
     {
         return $this->getValue($key);
     }

@@ -4,7 +4,6 @@ namespace App;
 
 /**
  * Interface ControllerInterface
- * @package App
  */
 interface ControllerInterface
 {
@@ -12,7 +11,7 @@ interface ControllerInterface
      * @param string $key
      * @param mixed $data
      */
-    public function setValue($key, $data);
+    public function setValue(string $key, $data);
 
     /**
      * @param mixed $data
@@ -20,13 +19,13 @@ interface ControllerInterface
     public function setValues($data);
 
     /**
-     * @param $key
+     * @param string $key
      * @return null|mixed
      */
-    public function getValue($key);
+    public function getValue(string $key);
 
     /**
      * @return array
      */
-    public function getValues();
+    public function getValues(): array;
 }

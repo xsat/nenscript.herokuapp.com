@@ -7,7 +7,6 @@ use DI\NotFoundException;
 
 /**
  * Class Application
- * @package App
  */
 class Application extends Injectable
 {
@@ -32,7 +31,6 @@ class Application extends Injectable
     private function createModules()
     {
         $this->getDI()->set('router', new Router());
-        $this->getDI()->set('url', new Url());
     }
 
     /**
@@ -41,9 +39,11 @@ class Application extends Injectable
      */
     private function createController()
     {
+        /** @var Router $router */
         $router = $this->getDI()->get('router');
         $route = $router->getRoute();
 
+        /** @var ControllerInterface $controller */
         $controller = '\\App\\Controllers\\' . ucfirst($route->getController()) . 'Controller';
 
         if (!class_exists($controller)) {
@@ -64,16 +64,17 @@ class Application extends Injectable
      * @return string
      * @throws NotFoundException
      */
-    public function main()
+    public function main(): string
     {
         return $this->compress($this->getDI()->get('view')->render());
     }
 
     /**
      * @param string $content
+     *
      * @return string
      */
-    public function compress($content)
+    public function compress(string $content): string
     {
         $search = ['/\>[^\S ]+/s', '/[^\S ]+\</s', '/(\s)+/s', '/>(\s)+</', '/\n/', '/\r/', '/\t/'];
         $replace = ['>', '<', '\\1', '> <', '', '', ''];
