@@ -30,10 +30,9 @@ class IndexController extends Controller
         $this->setValue('title', 'Decode - Nen');
         $this->setValue('menu', 'decode');
 
-        if (isset($_REQUEST['content'])) {
-            $content = $_REQUEST['content'];
-            $this->setValue('content', $content);
-            $this->setValue('result', Nen::decode($content));
+        if (isset($_REQUEST['text'])) {
+            $this->setValue('content', $_REQUEST['text']);
+            $this->setValue('result', Nen::decode($_REQUEST['text']));
         }
     }
 
@@ -42,10 +41,9 @@ class IndexController extends Controller
         $this->setValue('title', 'Encode - Nen');
         $this->setValue('menu', 'encode');
 
-        if (isset($_REQUEST['content'])) {
-            $content = $_REQUEST['content'];
-            $this->setValue('content', $content);
-            $this->setValue('result', Nen::encode($content));
+        if (isset($_REQUEST['text'])) {
+            $this->setValue('text', $_REQUEST['text']);
+            $this->setValue('result', Nen::encode($_REQUEST['text']));
         }
     }
 
