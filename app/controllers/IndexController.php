@@ -27,7 +27,7 @@ class IndexController extends Controller
 
     public function decodeAction()
     {
-        $this->setValue('title', 'Decode');
+        $this->setValue('title', 'Decode - Nen');
         $this->setValue('menu', 'decode');
 
         if (isset($_REQUEST['content'])) {
@@ -39,7 +39,7 @@ class IndexController extends Controller
 
     public function encodeAction()
     {
-        $this->setValue('title', 'Encode');
+        $this->setValue('title', 'Encode - Nen');
         $this->setValue('menu', 'encode');
 
         if (isset($_REQUEST['content'])) {

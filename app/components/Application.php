@@ -16,6 +16,11 @@ class Application extends Injectable
     private $controller;
 
     /**
+     * @var string
+     */
+    private $content;
+
+    /**
      * Application constructor.
      */
     public function __construct()
@@ -57,7 +62,7 @@ class Application extends Injectable
         }
 
         $this->controller = new $controller($this->getDI());
-        $this->controller->{$action}();
+        $this->content = $this->controller->{$action}();
     }
 
     /**
@@ -66,6 +71,10 @@ class Application extends Injectable
      */
     public function main(): string
     {
+        if ($this->content !== null) {
+            return $this->content;
+        }
+
         return $this->compress($this->getDI()->get('view')->render());
     }
 
