@@ -9,4 +9,7 @@
     <url>
         <loc>https://nenscript.herokuapp.com/encode.html</loc>
     </url>
+    <url>
+        <loc>https://nenscript.herokuapp.com/api.html</loc>
+    </url>
 </urlset>
