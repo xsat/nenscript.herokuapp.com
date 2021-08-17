@@ -31,7 +31,7 @@ class IndexController extends Controller
         $this->setValue('menu', 'decode');
 
         if (isset($_REQUEST['text'])) {
-            $this->setValue('content', $_REQUEST['text']);
+            $this->setValue('text', $_REQUEST['text']);
             $this->setValue('result', Nen::decode($_REQUEST['text']));
         }
     }
